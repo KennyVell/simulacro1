@@ -8,5 +8,9 @@ namespace simulacro1.Models
         public string? Language { get; set; }
         public DateTime PublicationDate { get; set; }
         public string? Description { get; set; }
+        public int AuthorId { get; set; }
+        public Author? Author { get; set; }
+        public int EditorialId { get; set; }
+        public Editorial? Editorial { get; set; }
     }
 }
