@@ -15,9 +15,11 @@ namespace simulacro1.Models
         public DateTime PublicationDate { get; set; }
         [Required]
         public string? Description { get; set; }
+        
         [Required]
         public int AuthorId { get; set; }
         public Author? Author { get; set; }
+        
         [Required]
         public int EditorialId { get; set; }
         public Editorial? Editorial { get; set; }
