@@ -14,11 +14,16 @@ namespace simulacro1.Controllers.Authors
             _authorsRepository = authorsRepository;
         }
 
-        [HttpPost]
-        [Route("api/author/create")]
-        public IActionResult Create([FromBody] Author author){
-            _authorsRepository.Add(author);
-            return Ok(author);
+        [HttpGet]
+        [Route("api/authors")]
+        public IActionResult Get(){
+            return Ok(_authorsRepository.GetAll());
+        }
+
+        [HttpGet]
+        [Route("api/authors/{id}")]
+        public IActionResult Get(int id){
+            return Ok(_authorsRepository.GetById(id));
         }
     }
 }

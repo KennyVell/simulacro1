@@ -14,11 +14,16 @@ namespace simulacro1.Controllers.Books
             _booksRepository = booksRepository;
         }
         
-        [HttpPost]
-        [Route("api/book/create")]
-        public IActionResult Create([FromBody] Book book){
-            _booksRepository.Add(book);
-            return Ok(book);
+        [HttpGet]
+        [Route("api/books")]
+        public IActionResult Get(){
+            return Ok(_booksRepository.GetAll());
+        }
+
+        [HttpGet]
+        [Route("api/books/{id}")]
+        public IActionResult Get(int id){
+            return Ok(_booksRepository.GetById(id));
         }
     }
 }

@@ -13,13 +13,17 @@ namespace simulacro1.Controllers.Editorials
         public EditorialsController(EditorialsRepository editorialsRepository){
             _editorialsRepository = editorialsRepository;
         }
-
-        [HttpPost]
-        [Route("api/editorial/create")]
-        public IActionResult Create([FromBody] Editorial editorial){
-            _editorialsRepository.Add(editorial);
-            return Ok(editorial);
+        
+        [HttpGet]
+        [Route("api/editorials")]
+        public IActionResult GetEditorials(){
+            return Ok(_editorialsRepository.GetAll());
         }
 
+        [HttpGet]
+        [Route("api/editorials/{id}")]
+        public IActionResult Details(int id){
+            return Ok(_editorialsRepository.GetById(id));
+        }
     }
 }

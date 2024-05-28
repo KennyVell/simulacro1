@@ -4,6 +4,12 @@ namespace simulacro1.Services
 {
     public interface IEditorialsRepository
     {
-        void Add(Editorial editorial);        
+        object editorials { get; }
+
+        IEnumerable<Editorial> GetAll();
+        Editorial GetById(int id);
+        void Add(Editorial editorial);
+        void Update(Editorial editorial);
+        void Delete(Editorial editorial);        
     }
 }

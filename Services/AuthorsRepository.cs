@@ -17,5 +17,26 @@ namespace simulacro1.Services
             _context.Authors.Add(author);
             _context.SaveChanges();
         }
+
+        public IEnumerable<Author> GetAll()
+        {
+            return _context.Authors.ToList();
+        }
+
+        public Author GetById(int id)
+        {
+            return _context.Authors.Find();
+        }
+
+        public void Update(Author author)
+        {
+            _context.Authors.Update(author);
+            _context.SaveChanges();    
+        }
+        
+        public void Delete(Author author)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
