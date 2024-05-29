@@ -1,5 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using simulacro1.Data;
 using simulacro1.Models;
+
 
 namespace simulacro1.Services
 {
@@ -21,6 +24,7 @@ namespace simulacro1.Services
         public IEnumerable<Author> GetAll()
         {
             var activeAuthors = _context.Authors
+            .Include(a => a.Books) // Incluye los libros relacionados con cada autor
             .Where(a => a.Status.ToLower() == "active").ToList();
 
             return activeAuthors;
@@ -29,14 +33,17 @@ namespace simulacro1.Services
         public IEnumerable<Author> GetAllInactive()
         {
             var inactiveAuthors = _context.Authors
+            .Include(a => a.Books)
             .Where(a => a.Status.ToLower() == "inactive").ToList();
 
             return inactiveAuthors;
         }
 
-        public Author GetById(int id)
+        public async Task<Author> GetById(int id)
         {
-            return _context.Authors.Find(id);
+            var author = await _context.Authors
+            .Include(a => a.Books).FirstOrDefaultAsync(a => a.Id == id);
+            return author;
         }
 
         public void Update(Author author)

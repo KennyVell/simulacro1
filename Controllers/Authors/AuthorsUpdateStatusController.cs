@@ -17,14 +17,14 @@ namespace simulacro1.Controllers.Authors
 
         [HttpPatch]
         [Route("api/authors/updateStatus/{id}")]
-        public IActionResult UpdateStatus(int id, [FromBody] AuthorStatusUpdateDTO authorDTO)
+        public async Task<IActionResult> UpdateStatus(int id, [FromBody] AuthorStatusUpdateDTO authorDTO)
         {
             if (authorDTO == null || string.IsNullOrEmpty(authorDTO.Status))
             {
                 return BadRequest("Invalid data.");
             }
 
-            var author = _authorsRepository.GetById(id);
+            var author = await _authorsRepository.GetById(id);
 
             if (author == null)
             {

@@ -17,7 +17,7 @@ namespace simulacro1.Controllers.Authors
 
         [HttpPatch]
         [Route("api/authors/update/{id}")]
-        public IActionResult Update(int id, [FromBody] AuthorDTO authorDTO)
+        public async Task<IActionResult> Update(int id, [FromBody] AuthorDTO authorDTO)
         {
             // Validación del DTO
             if (authorDTO == null)
@@ -26,7 +26,7 @@ namespace simulacro1.Controllers.Authors
             }
 
             // Obtener el autor existente
-            var author = _authorsRepository.GetById(id);
+            var author = await _authorsRepository.GetById(id);
 
             if (author == null)
             {

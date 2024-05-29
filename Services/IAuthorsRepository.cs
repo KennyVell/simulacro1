@@ -6,7 +6,7 @@ namespace simulacro1.Services
     {
         IEnumerable<Author> GetAll();
         IEnumerable<Author> GetAllInactive();
-        Author GetById(int id);
+        Task<Author> GetById(int id);
         void Add(Author author);
         void Update(Author author);
     }

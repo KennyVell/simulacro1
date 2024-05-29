@@ -9,20 +9,29 @@ namespace simulacro1.Controllers.Authors
     {
         //Inyeccion de dependencias
         private readonly IAuthorsRepository _authorsRepository;
-        public AuthorsController(IAuthorsRepository authorsRepository){
+        public AuthorsController(IAuthorsRepository authorsRepository)
+        {
             _authorsRepository = authorsRepository;
         }
 
         [HttpGet]
         [Route("api/authors")]
-        public IActionResult GetActive(){
+        public IActionResult GetActive()
+        {
             return Ok(_authorsRepository.GetAll());
         }
 
         [HttpGet]
         [Route("api/authors/{id}")]
-        public IActionResult Get(int id){
-            return Ok(_authorsRepository.GetById(id));
+        public async Task<IActionResult> Get(int id)
+        {
+            var author = await _authorsRepository.GetById(id);
+            if (author == null)
+            {
+                return NotFound();
+            }
+            return Ok(author);
         }
+
     }
 }
