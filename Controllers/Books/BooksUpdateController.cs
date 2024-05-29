@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using simulacro1.DTO.Books;
+using simulacro1.DTOs.Books;
 using simulacro1.Services;
 
 namespace simulacro1.Controllers.Books

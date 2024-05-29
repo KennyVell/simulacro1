@@ -1,4 +1,4 @@
-namespace simulacro1.DTO.Books
+namespace simulacro1.DTOs.Books
 {
     public class BookStatusUpdateDTO
     {

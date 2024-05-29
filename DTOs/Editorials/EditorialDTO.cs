@@ -1,4 +1,4 @@
-namespace simulacro1.DTO.Editorials
+namespace simulacro1.DTOs.Editorials
 {
     public class EditorialDTO
     {       

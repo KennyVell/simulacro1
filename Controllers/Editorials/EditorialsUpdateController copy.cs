@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using simulacro1.DTO.Editorials;
+using simulacro1.DTOs.Editorials;
 using simulacro1.Services;
 
 namespace simulacro1.Controllers.Editorials

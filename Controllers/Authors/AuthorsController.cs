@@ -15,7 +15,7 @@ namespace simulacro1.Controllers.Authors
 
         [HttpGet]
         [Route("api/authors")]
-        public IActionResult Get(){
+        public IActionResult GetActive(){
             return Ok(_authorsRepository.GetAll());
         }
 

@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using simulacro1.DTO.Authors;
+using simulacro1.DTOs.Authors;
 using simulacro1.Services;
 
 namespace simulacro1.Controllers.Authors

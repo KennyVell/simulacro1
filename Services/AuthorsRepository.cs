@@ -20,7 +20,18 @@ namespace simulacro1.Services
 
         public IEnumerable<Author> GetAll()
         {
-            return _context.Authors.ToList();
+            var activeAuthors = _context.Authors
+            .Where(a => a.Status.ToLower() == "active").ToList();
+
+            return activeAuthors;
+        }
+
+        public IEnumerable<Author> GetAllInactive()
+        {
+            var inactiveAuthors = _context.Authors
+            .Where(a => a.Status.ToLower() == "inactive").ToList();
+
+            return inactiveAuthors;
         }
 
         public Author GetById(int id)
@@ -31,7 +42,7 @@ namespace simulacro1.Services
         public void Update(Author author)
         {
             _context.Authors.Update(author);
-            _context.SaveChanges();    
+            _context.SaveChanges();
         }
     }
 }

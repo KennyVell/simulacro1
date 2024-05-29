@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using simulacro1.Data;
 using simulacro1.Models;
 
@@ -20,7 +21,8 @@ namespace simulacro1.Services
 
         public IEnumerable<Book> GetAll()
         {
-            return _context.Books.ToList();
+            var books = _context.Books.Include(b => b.Author).Include(b => b.Editorial).ToList();
+            return books;
         }
 
         public Book GetById(int id)
