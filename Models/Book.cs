@@ -8,7 +8,7 @@ namespace simulacro1.Models
         public required string? Language { get; set; }
         public required DateTime PublicationDate { get; set; }
         public required string? Description { get; set; }
-        public string? Status { get; set; }
+        public required string? Status { get; set; } // "active" or "inactive"
         
         public required int AuthorId { get; set; }
         public Author? Author { get; set; }

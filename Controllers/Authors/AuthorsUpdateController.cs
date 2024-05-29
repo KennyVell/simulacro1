@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using simulacro1.DTO;
-using simulacro1.Models;
+using simulacro1.DTO.Authors;
 using simulacro1.Services;
-using Microsoft.AspNetCore.JsonPatch;
-using Microsoft.AspNetCore.JsonPatch.Exceptions;
 
 namespace simulacro1.Controllers.Authors
 {
@@ -19,9 +16,16 @@ namespace simulacro1.Controllers.Authors
         }
 
         [HttpPatch]
-        [Route("api/authors/update")]
-        public IActionResult Update(int id, [FromBody] JsonPatchDocument<AuthorDTO> patchDoc)
+        [Route("api/authors/update/{id}")]
+        public IActionResult Update(int id, [FromBody] AuthorDTO authorDTO)
         {
+            // Validación del DTO
+            if (authorDTO == null)
+            {
+                return BadRequest("Invalid data.");
+            }
+
+            // Obtener el autor existente
             var author = _authorsRepository.GetById(id);
 
             if (author == null)
@@ -29,21 +33,47 @@ namespace simulacro1.Controllers.Authors
                 return NotFound();
             }
 
-            var authorDTO = new AuthorDTO
+            // Actualizar solo las propiedades que han cambiado
+            bool isUpdated = false;
+
+            if (!string.IsNullOrEmpty(authorDTO.Name) && author.Name != authorDTO.Name)
             {
-                Name = author.Name,
-                LastName = author.LastName,
-                Email = author.Email,
-                Nationality = author.Nationality
-            };
+                author.Name = authorDTO.Name;
+                isUpdated = true;
+            }
 
-            patchDoc.ApplyTo(authorDTO);
+            if (!string.IsNullOrEmpty(authorDTO.LastName) && author.LastName != authorDTO.LastName)
+            {
+                author.LastName = authorDTO.LastName;
+                isUpdated = true;
+            }
 
-            author.Name = authorDTO.Name;
-            author.LastName = authorDTO.LastName;
-            author.Email = authorDTO.Email;
-            author.Nationality = authorDTO.Nationality;
+            if (!string.IsNullOrEmpty(authorDTO.Email) && author.Email != authorDTO.Email)
+            {
+                author.Email = authorDTO.Email;
+                isUpdated = true;
+            }
 
+            if (!string.IsNullOrEmpty(authorDTO.Nationality) && author.Nationality != authorDTO.Nationality)
+            {
+                author.Nationality = authorDTO.Nationality;
+                isUpdated = true;
+            }
+            //el status
+            if (!string.IsNullOrEmpty(authorDTO.Status) && author.Status!= authorDTO.Status)
+            {
+                author.Status = authorDTO.Status;
+                isUpdated = true;
+            }
+
+
+            // Si no hay cambios, devolver un NoContent
+            if (!isUpdated)
+            {
+                return NoContent();
+            }
+
+            // Guardar los cambios en el repositorio
             _authorsRepository.Update(author);
 
             return Ok(author);

@@ -33,10 +33,5 @@ namespace simulacro1.Services
             _context.Books.Update(book);
             _context.SaveChanges();
         }
-
-        public void Delete(Book book)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

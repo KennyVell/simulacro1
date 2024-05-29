@@ -33,10 +33,5 @@ namespace simulacro1.Services
             _context.Authors.Update(author);
             _context.SaveChanges();    
         }
-        
-        public void Delete(Author author)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

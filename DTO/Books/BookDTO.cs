@@ -1,4 +1,4 @@
-namespace simulacro1.DTO
+namespace simulacro1.DTO.Books
 {
     public class BookDTO
     {      
@@ -8,7 +8,6 @@ namespace simulacro1.DTO
         public DateTime PublicationDate { get; set; }
         public string? Description { get; set; }
         public string? Status { get; set; }
-        
         public int AuthorId { get; set; }        
         public int EditorialId { get; set; }
     }

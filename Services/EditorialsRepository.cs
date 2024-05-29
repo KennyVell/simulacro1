@@ -35,10 +35,5 @@ namespace simulacro1.Services
             _context.Editorials.Update(editorial);
             _context.SaveChanges();
         }
-
-        public void Delete(Editorial editorial)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

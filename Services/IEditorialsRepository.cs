@@ -9,7 +9,6 @@ namespace simulacro1.Services
         IEnumerable<Editorial> GetAll();
         Editorial GetById(int id);
         void Add(Editorial editorial);
-        void Update(Editorial editorial);
-        void Delete(Editorial editorial);        
+        void Update(Editorial editorial);       
     }
 }

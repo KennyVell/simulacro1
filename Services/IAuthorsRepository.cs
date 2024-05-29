@@ -8,6 +8,5 @@ namespace simulacro1.Services
         Author GetById(int id);
         void Add(Author author);
         void Update(Author author);
-        void Delete(Author author);
     }
 }

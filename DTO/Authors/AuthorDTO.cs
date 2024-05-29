@@ -1,4 +1,4 @@
-namespace simulacro1.DTO
+namespace simulacro1.DTO.Authors
 {
     public class AuthorDTO
     {
