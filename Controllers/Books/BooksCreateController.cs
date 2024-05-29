@@ -10,7 +10,7 @@ namespace simulacro1.Controllers.Books
     {
         //Inyeccion de dependencias
         private readonly IBooksRepository _booksRepository;
-        public BooksCreateController(BooksRepository booksRepository){
+        public BooksCreateController(IBooksRepository booksRepository){
             _booksRepository = booksRepository;
         }
 

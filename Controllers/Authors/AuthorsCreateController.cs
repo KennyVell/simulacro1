@@ -10,7 +10,7 @@ namespace simulacro1.Controllers.Authors
     {
         //Inyeccion de dependencias
         private readonly IAuthorsRepository _authorsRepository;
-        public AuthorsCreateController(AuthorsRepository authorsRepository){
+        public AuthorsCreateController(IAuthorsRepository authorsRepository){
             _authorsRepository = authorsRepository;
         }
 

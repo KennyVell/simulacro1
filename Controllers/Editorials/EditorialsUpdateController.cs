@@ -10,7 +10,7 @@ namespace simulacro1.Controllers.Editorials
     {
         //Inyeccion de dependencias
         private readonly IEditorialsRepository _editorialsRepository;
-        public EditorialsUpdateController(EditorialsRepository editorialsRepository){
+        public EditorialsUpdateController(IEditorialsRepository editorialsRepository){
             _editorialsRepository = editorialsRepository;
         }
 
