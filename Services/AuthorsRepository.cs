@@ -25,7 +25,7 @@ namespace simulacro1.Services
 
         public Author GetById(int id)
         {
-            return _context.Authors.Find();
+            return _context.Authors.Find(id);
         }
 
         public void Update(Author author)
