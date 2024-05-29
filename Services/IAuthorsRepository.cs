@@ -4,8 +4,8 @@ namespace simulacro1.Services
 {
     public interface IAuthorsRepository
     {
-        IEnumerable<Author> GetAll();
-        IEnumerable<Author> GetAllInactive();
+        Task<IEnumerable<Author>> GetAll();
+        Task<IEnumerable<Author>> GetAllInactive();
         Task<Author> GetById(int id);
         void Add(Author author);
         void Update(Author author);

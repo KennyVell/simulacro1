@@ -19,15 +19,30 @@ namespace simulacro1.Services
             _context.SaveChanges();
         }
 
-        public IEnumerable<Book> GetAll()
+        public async Task<IEnumerable<Book>> GetAll()
         {
-            var books = _context.Books.Include(b => b.Author).Include(b => b.Editorial).ToList();
-            return books;
+            var activeBooks = await _context.Books
+            .Include(b => b.Author).Include(b => b.Editorial)
+            .Where(b => b.Status.ToLower() == "active").ToListAsync();
+
+            return activeBooks;
         }
 
-        public Book GetById(int id)
+        public async Task<IEnumerable<Book>> GetAllInactive()
         {
-            return _context.Books.Find(id);
+            var activeBooks = await _context.Books
+            .Include(b => b.Author).Include(b => b.Editorial)
+            .Where(b => b.Status.ToLower() == "inactive").ToListAsync();
+
+            return activeBooks;
+        }
+
+        public async Task<Book> GetById(int id)
+        {
+            var book = await _context.Books
+            .Include(b => b.Author).Include(b => b.Editorial)
+            .FirstOrDefaultAsync(a => a.Id == id);
+            return book;
         }
 
         public void Update(Book book)

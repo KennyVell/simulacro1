@@ -16,14 +16,14 @@ namespace simulacro1.Controllers.Books
         
         [HttpGet]
         [Route("api/books")]
-        public IActionResult Get(){
-            return Ok(_booksRepository.GetAll());
+        public async Task<IActionResult> Get(){
+            return Ok(await _booksRepository.GetAll());
         }
 
         [HttpGet]
         [Route("api/books/{id}")]
-        public IActionResult Get(int id){
-            return Ok(_booksRepository.GetById(id));
+        public async Task<IActionResult> Get(int id){
+            return Ok(await _booksRepository.GetById(id));
         }
     }
 }

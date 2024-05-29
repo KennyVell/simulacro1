@@ -16,14 +16,14 @@ namespace simulacro1.Controllers.Books
 
         [HttpPatch]
         [Route("api/books/updateStatus/{id}")]
-        public IActionResult UpdateStatus(int id, [FromBody] BookStatusUpdateDTO bookDTO)
+        public async Task<IActionResult> UpdateStatus(int id, [FromBody] BookStatusUpdateDTO bookDTO)
         {
             if (bookDTO == null || string.IsNullOrEmpty(bookDTO.Status))
             {
                 return BadRequest("Invalid data.");
             }
 
-            var book = _booksRepository.GetById(id);
+            var book = await _booksRepository.GetById(id);
 
             if (book == null)
             {

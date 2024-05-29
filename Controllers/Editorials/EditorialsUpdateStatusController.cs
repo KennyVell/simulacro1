@@ -16,14 +16,14 @@ namespace simulacro1.Controllers.Editorials
 
         [HttpPatch]
         [Route("api/editorials/updateStatus/{id}")]
-        public IActionResult UpdateStatus(int id, [FromBody] EditorialStatusUpdateDTO editorialDTO)
+        public async Task<IActionResult> UpdateStatus(int id, [FromBody] EditorialStatusUpdateDTO editorialDTO)
         {
             if (editorialDTO == null || string.IsNullOrEmpty(editorialDTO.Status))
             {
                 return BadRequest("Invalid data.");
             }
 
-            var editorial = _editorialsRepository.GetById(id);
+            var editorial = await _editorialsRepository.GetById(id);
 
             if (editorial == null)
             {

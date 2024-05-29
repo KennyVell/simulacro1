@@ -16,14 +16,14 @@ namespace simulacro1.Controllers.Editorials
         
         [HttpGet]
         [Route("api/editorials")]
-        public IActionResult GetEditorials(){
-            return Ok(_editorialsRepository.GetAll());
+        public async Task<IActionResult> GetEditorials(){
+            return Ok(await _editorialsRepository.GetAll());
         }
 
         [HttpGet]
         [Route("api/editorials/{id}")]
-        public IActionResult Details(int id){
-            return Ok(_editorialsRepository.GetById(id));
+        public async Task<IActionResult> Details(int id){
+            return Ok(await _editorialsRepository.GetById(id));
         }
     }
 }

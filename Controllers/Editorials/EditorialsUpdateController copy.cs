@@ -16,7 +16,7 @@ namespace simulacro1.Controllers.Editorials
 
         [HttpPatch]
         [Route("api/editorials/update/{id}")]            
-        public IActionResult Update(int id, [FromBody] EditorialDTO editorialDTO)
+        public async Task<IActionResult> Update(int id, [FromBody] EditorialDTO editorialDTO)
         {
             // Validación del DTO
             if (editorialDTO == null)
@@ -25,7 +25,7 @@ namespace simulacro1.Controllers.Editorials
             }
 
             // Obtener el editorial existente
-            var editorial = _editorialsRepository.GetById(id);
+            var editorial = await _editorialsRepository.GetById(id);
 
             if (editorial == null)
             {

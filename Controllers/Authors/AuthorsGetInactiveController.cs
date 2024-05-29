@@ -15,7 +15,7 @@ namespace simulacro1.Controllers.Authors
 
         [HttpGet]
         [Route("api/authors/inactive")] 
-        public IActionResult GetInactive(){
+        public async Task<IActionResult> Get(){
             return Ok(_authorsRepository.GetAllInactive());
         }
     }

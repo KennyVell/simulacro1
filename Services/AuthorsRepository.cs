@@ -21,20 +21,20 @@ namespace simulacro1.Services
             _context.SaveChanges();
         }
 
-        public IEnumerable<Author> GetAll()
+        public async Task<IEnumerable<Author>> GetAll()
         {
-            var activeAuthors = _context.Authors
+            var activeAuthors = await _context.Authors
             .Include(a => a.Books) // Incluye los libros relacionados con cada autor
-            .Where(a => a.Status.ToLower() == "active").ToList();
+            .Where(a => a.Status.ToLower() == "active").ToListAsync();
 
             return activeAuthors;
         }
 
-        public IEnumerable<Author> GetAllInactive()
+        public async Task<IEnumerable<Author>> GetAllInactive()
         {
-            var inactiveAuthors = _context.Authors
+            var inactiveAuthors = await _context.Authors
             .Include(a => a.Books)
-            .Where(a => a.Status.ToLower() == "inactive").ToList();
+            .Where(a => a.Status.ToLower() == "inactive").ToListAsync();
 
             return inactiveAuthors;
         }

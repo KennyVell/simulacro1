@@ -16,7 +16,7 @@ namespace simulacro1.Controllers.Books
 
         [HttpPatch]
         [Route("api/books/update/{id}")]
-         public IActionResult Update(int id, [FromBody] BookDTO bookDTO)
+         public async Task<IActionResult> Update(int id, [FromBody] BookDTO bookDTO)
         {
             // Validación del DTO
             if (bookDTO == null)
@@ -25,7 +25,7 @@ namespace simulacro1.Controllers.Books
             }
 
             // Obtener el book existente
-            var book = _booksRepository.GetById(id);
+            var book = await _booksRepository.GetById(id);
 
             if (book == null)
             {

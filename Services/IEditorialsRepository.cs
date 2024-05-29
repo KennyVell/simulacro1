@@ -6,8 +6,9 @@ namespace simulacro1.Services
     {
         object editorials { get; }
 
-        IEnumerable<Editorial> GetAll();
-        Editorial GetById(int id);
+        Task<IEnumerable<Editorial>> GetAll();
+        Task<IEnumerable<Editorial>> GetAllInactive();
+        Task<Editorial> GetById(int id);
         void Add(Editorial editorial);
         void Update(Editorial editorial);       
     }
