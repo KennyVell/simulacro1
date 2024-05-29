@@ -9,7 +9,7 @@ namespace simulacro1.Models
         public required string? Address { get; set; }
         public required string? Phone { get; set; }
         public required string? Email { get; set; }
-        public string? Estado { get; set; }
+        public string? Status { get; set; }
         
         [JsonIgnore]
         public List<Book>? Books { get; set; }
